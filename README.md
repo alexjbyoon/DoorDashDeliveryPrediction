@@ -1,11 +1,13 @@
+# DoorDash Delivery Time Prediction
+
 Predicting DoorDash delivery duration (in seconds) using XGBoost regression on order, dasher availability, and restaurant features.
 
 
-Problem Statement
+## 🎯 Problem Statement
 Accurate delivery time estimates are critical to customer satisfaction on food delivery platforms. When ETAs are off, customers lose trust and churn. DoorDash generates rich operational data on every order — dasher availability, restaurant prep estimates, order size, driving distance — but translating that into a reliable predicted delivery time is non-trivial.
 This project asks: can we use order-level and market-level features to accurately predict how long a DoorDash delivery will take from order placement to doorstep?
 
-Dataset
+## 🗃️ Dataset Source
 SourceFileDoorDash historical order datadatasets/historical_data.csv
 Key raw columns include:
 
@@ -17,7 +19,7 @@ total_items, num_distinct_items — order size
 store_id, store_primary_category — restaurant identity and cuisine type
 
 
-Approach
+## 🛠️ Approach
 Feature Engineering
 
 Target variable: delivery_time = actual_delivery_time - created_at (total seconds end-to-end)
@@ -49,7 +51,7 @@ RMSE (Root Mean Squared Error) — penalizes larger errors more heavily
 PCA Analysis
 PCA was applied post-modeling to visualize cumulative explained variance across the ~80+ features (after OHE expansion), confirming the relative contribution of the feature set.
 
-Key Findings
+## 📊 Key Findings
 
 estimated_store_to_consumer_driving_duration and estimated_order_place_duration were the top predictive features — DoorDash's own internal estimates are the strongest signal for actual delivery time.
 percent_busy_dashers captures market congestion and contributed meaningfully to the model, confirming that dasher availability at order time impacts delivery speed.
@@ -65,7 +67,7 @@ DoorDashDeliveryPrediction/
 ├── code.ipynb        # Full analysis: EDA, feature engineering, modeling, evaluation
 └── datasets.zip      # Historical DoorDash order data (unzip before running)
 
-How to Run
+## 🚀 Getting Started
 bash# 1. Clone the repo
 git clone https://github.com/alexjbyoon/DoorDashDeliveryPrediction.git
 cd DoorDashDeliveryPrediction
